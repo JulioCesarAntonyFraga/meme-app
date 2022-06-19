@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
 using API.Interfaces;
 using API.Repositories;
 using System.Text;
@@ -84,9 +83,6 @@ namespace API
                 });
                 c.AddSecurityRequirement(securityReq);
             });
-
-            services.AddDbContext<APIContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("APIContext")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAuthRepository, AuthRepository>();
